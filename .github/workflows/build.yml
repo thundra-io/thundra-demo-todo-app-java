@@ -17,6 +17,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 8
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
       - name: Build with Maven
         run: mvn -B clean install
 
@@ -29,6 +35,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Create artifact
+        run: mvn -B clean package -DskipTests
       - name: Login to Docker Hub
         run: docker login -u thundraio -p ${{ secrets.THUNDRA_DOCKERHUB_PASSWORD }}
       - name: Build Docker image
