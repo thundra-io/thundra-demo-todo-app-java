@@ -5,4 +5,5 @@ COPY thundra-agent-bootstrap.jar /app/thundra-agent-bootstrap.jar
 WORKDIR /app
 EXPOSE 8080
 ENV THUNDRA_AGENT_APPLICATION_NAME=thundra-demo-todo-app-java
+ENV THUNDRA_AGENT_APPLICATION_TAG_DEBUGGER_ONBOARDING=true
 ENTRYPOINT [ "java", "-javaagent:thundra-agent-bootstrap.jar", "-jar", "thundra-demo-todo-app-java.jar" ]
