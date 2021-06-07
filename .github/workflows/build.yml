@@ -2,7 +2,8 @@ name: Java CI with Maven for thundra-demo-todo-app-java
 
 on:
   pull_request:
-    types: [closed]
+    branches: [ master ]
+    types: [ closed ]
 
 jobs:
   build:
