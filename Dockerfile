@@ -6,4 +6,6 @@ WORKDIR /app
 EXPOSE 8080
 ENV THUNDRA_AGENT_APPLICATION_NAME=thundra-demo-todo-app-java
 ENV THUNDRA_AGENT_APPLICATION_TAG_THUNDRA_DEBUGGER_ONBOARDING=true
+ENV THUNDRA_AGENT_APPLICATION_VERSION=1.0.0
+ENV THUNDRA_AGENT_APPLICATION_STAGE=onboarding
 ENTRYPOINT [ "java", "-javaagent:thundra-agent-bootstrap.jar", "-jar", "thundra-demo-todo-app-java.jar" ]
