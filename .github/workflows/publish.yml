@@ -1,14 +1,12 @@
 name: Publish thundra-demo-todo-app-java to Docker Hub
 
 on:
-  pull_request:
+  push:
     branches: [ master ]
-    types: [ closed ]
 
 jobs:
   docker:
     name: Publish - Docker Hub
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     env:
       REPO: thundraio/thundra-demo-todo-app-java
