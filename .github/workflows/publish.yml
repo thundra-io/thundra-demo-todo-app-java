@@ -1,0 +1,31 @@
+name: Publish thundra-demo-todo-app-java to Docker Hub
+
+on:
+  pull_request:
+    branches: [ master ]
+    types: [ closed ]
+
+jobs:
+  docker:
+    name: Publish - Docker Hub
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    env:
+      REPO: thundraio/thundra-demo-todo-app-java
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Create artifact
+        run: mvn -B clean package -DskipTests
+      - name: Login to Docker Hub
+        run: docker login -u thundraio -p ${{ secrets.THUNDRA_DOCKERHUB_PASSWORD }}
+      - name: Build Docker image
+        run: docker build -t $REPO:latest -t $REPO:${GITHUB_SHA::8} .
+      - name: Publish Docker image
+        run: docker push $REPO
