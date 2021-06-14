@@ -35,7 +35,7 @@ class TodoServiceTest {
 
 
     @Test
-    public void testFindTodos() {
+    void testFindTodos() {
         List<TodoEntity> expected = Arrays.asList(new TodoEntity(1L, "Test-1", true),
                 new TodoEntity(2L, "Test-2", false), new TodoEntity(3L, "Test-3", true));
         when(repository.findAll()).thenReturn(expected);
