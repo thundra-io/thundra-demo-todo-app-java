@@ -81,7 +81,7 @@ class TodoControllerTest {
                 .andExpect(status().isOk()).andReturn();
         Todo actual = objectMapper.readValue(response.getResponse().getContentAsString(), Todo.class);
         assertThat(actual).extracting(Todo::getId, Todo::getTitle, Todo::isCompleted)
-                .containsExactly(1L, expected.getTitle(), false);
+                .containsExactly(1L, expected.getTitle(), expected.isCompleted());
     }
 
     @Test
@@ -96,7 +96,7 @@ class TodoControllerTest {
     void testUpdateTodo() throws Exception {
         Todo expected = new Todo();
         expected.setTitle("Test-1");
-        when(service.update(anyLong(), any(Todo.class))).thenAnswer((Answer<Todo>) invocationOnMock -> {
+        when(service.updateTodo(anyLong(), any(Todo.class))).thenAnswer((Answer<Todo>) invocationOnMock -> {
             Long id = invocationOnMock.getArgument(0, Long.class);
             Todo todo = invocationOnMock.getArgument(1, Todo.class);
             todo.setId(id);
@@ -108,7 +108,7 @@ class TodoControllerTest {
                 .andExpect(status().isOk()).andReturn();
         Todo actual = objectMapper.readValue(response.getResponse().getContentAsString(), Todo.class);
         assertThat(actual).extracting(Todo::getId, Todo::getTitle, Todo::isCompleted)
-                .containsExactly(1L, expected.getTitle(), false);
+                .containsExactly(1L, expected.getTitle(), expected.isCompleted());
     }
 
     @Test

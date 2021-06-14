@@ -39,7 +39,7 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public Todo update(Long id, Todo request) {
+    public Todo updateTodo(Long id, Todo request) {
         TodoEntity entity = getTodoEntity(id);
         entity.setTitle(request.getTitle());
         entity.setCompleted(request.isCompleted());
