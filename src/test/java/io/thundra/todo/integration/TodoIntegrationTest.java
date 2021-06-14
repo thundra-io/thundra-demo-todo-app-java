@@ -94,9 +94,11 @@ class TodoIntegrationTest extends ContextInitializedTest {
         assertThat(responseGetAllTodos.getStatusCode()).isEqualTo(HttpStatus.OK);
         List<Todo> actual = responseGetAllTodos.getBody();
         assertThat(actual).extracting(Todo::getId, Todo::getTitle, Todo::isCompleted)
-                .doesNotContain(
-                        tuple(3L, "Test-3", true)
-                );
+                .containsExactly(
+                        tuple(1L, "Test-1", true),
+                        tuple(2L, "Test-2", false)
+                )
+                .doesNotContain(tuple(3L, "Test-3", true));
     }
 
     @Test
