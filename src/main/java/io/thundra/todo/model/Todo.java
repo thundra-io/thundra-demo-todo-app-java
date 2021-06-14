@@ -1,10 +1,13 @@
 package io.thundra.todo.model;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @author tolgatakir
  */
 public class Todo {
     private Long id;
+    @NotNull(message = "Title cannot be null")
     private String title;
     private boolean completed;
 

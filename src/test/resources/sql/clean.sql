@@ -1,0 +1,2 @@
+DELETE
+from todo;
