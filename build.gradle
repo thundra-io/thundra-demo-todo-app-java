@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.5.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+group 'io.thundra'
+version '1.0.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('org.springframework.boot:spring-boot-starter-validation')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('mysql:mysql-connector-java')
+    runtimeOnly('com.h2database:h2')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('org.testcontainers:testcontainers:1.15.3')
+    testImplementation('org.testcontainers:mysql:1.15.3')
+    testImplementation('org.testcontainers:junit-jupiter:1.15.3')
+    testImplementation('org.testcontainers:selenium:1.15.3')
+    testImplementation('org.seleniumhq.selenium:selenium-chrome-driver:3.141.59')
+}
+
+test {
+    useJUnitPlatform()
+    jvmArgs '-javaagent:thundra-agent-bootstrap.jar'
+    environment 'THUNDRA_APIKEY', '<YOUR_APIKEY>'
+    environment 'THUNDRA_AGENT_REPORT_REST_BASEURL', 'https://collector.thundra.me/v1'
+    environment 'THUNDRA_AGENT_BROKER_ENABLE', false
+    environment 'THUNDRA_AGENT_APPLICATION_NAME', 'thundra-demo-todo-app-java'
+}
