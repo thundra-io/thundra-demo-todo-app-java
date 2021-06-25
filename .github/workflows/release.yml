@@ -1,6 +1,7 @@
 name: Release thundra-demo-todo-app-java to Docker Hub
 
 on:
+  workflow_dispatch:
 
 jobs:
   docker:
