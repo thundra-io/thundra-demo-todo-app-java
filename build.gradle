@@ -28,9 +28,4 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    jvmArgs '-javaagent:thundra-agent-bootstrap.jar'
-    environment 'THUNDRA_APIKEY', '<YOUR_APIKEY>'
-    environment 'THUNDRA_AGENT_REPORT_REST_BASEURL', 'https://collector.thundra.me/v1'
-    environment 'THUNDRA_AGENT_BROKER_ENABLE', false
-    environment 'THUNDRA_AGENT_APPLICATION_NAME', 'thundra-demo-todo-app-java'
 }
