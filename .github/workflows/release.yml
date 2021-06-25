@@ -1,4 +1,4 @@
-name: Publish thundra-demo-todo-app-java to Docker Hub
+name: Release thundra-demo-todo-app-java to Docker Hub
 
 on:
 
