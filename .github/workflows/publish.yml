@@ -1,8 +1,6 @@
 name: Publish thundra-demo-todo-app-java to Docker Hub
 
 on:
-  push:
-    branches: [ master ]
 
 jobs:
   docker:
