@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -33,19 +34,19 @@ public class TodoController {
     }
 
     @PostMapping
-    public ResponseEntity<Todo> addTodo(@RequestBody Todo request) {
+    public ResponseEntity<Todo> addTodo(@Valid @RequestBody Todo request) {
         Todo todo = service.addTodo(request);
         return ResponseEntity.ok(todo);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Todo> updateTodo(@PathVariable Long id, @RequestBody Todo request) {
-        Todo todo = service.update(id, request);
+    public ResponseEntity<Todo> updateTodo(@PathVariable Long id, @Valid @RequestBody Todo request) {
+        Todo todo = service.updateTodo(id, request);
         return ResponseEntity.ok(todo);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Todo> deleteTodo(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteTodo(@PathVariable Long id) {
         service.deleteTodo(id);
         return ResponseEntity.noContent().build();
     }
@@ -57,7 +58,7 @@ public class TodoController {
     }
 
     @PostMapping("/clear-completed")
-    public ResponseEntity<Todo> clearCompletedTodo() {
+    public ResponseEntity<Void> clearCompletedTodo() {
         service.clearCompletedTodo();
         return ResponseEntity.ok().build();
     }

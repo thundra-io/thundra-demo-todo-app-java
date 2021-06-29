@@ -2,18 +2,30 @@ package io.thundra.todo.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author tolgatakir
  */
 @Entity
+@Table(name = "todo")
 public class TodoEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private boolean completed;
+
+    public TodoEntity() {
+    }
+
+    public TodoEntity(Long id, String title, boolean completed) {
+        this.id = id;
+        this.title = title;
+        this.completed = completed;
+    }
 
     public Long getId() {
         return id;
