@@ -26,4 +26,5 @@ jobs:
           command: ./gradlew build
         env:
           THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.me/v1
+          THUNDRA_AGENT_TEST_PROJECT_ID: f5a62856-49b3-46e8-8b0c-49f219d1270b
           THUNDRA_AGENT_BROKER_ENABLE: false
