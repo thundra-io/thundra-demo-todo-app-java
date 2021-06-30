@@ -24,6 +24,7 @@ dependencies {
     testImplementation('org.testcontainers:junit-jupiter:1.15.3')
     testImplementation('org.testcontainers:selenium:1.15.3')
     testImplementation('org.seleniumhq.selenium:selenium-chrome-driver:3.141.59')
+    testImplementation("org.junit.platform:junit-platform-launcher:1.6.2")
 }
 
 test {

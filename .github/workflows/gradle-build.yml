@@ -5,6 +5,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -23,8 +24,8 @@ jobs:
         uses: thundra-io/thundra-gradle-test-action@prep-for-release
         with:
           apikey: ${{ secrets.THUNDRA_DEMO_APIKEY }}
-          command: ./gradlew build
+          project_id: f5a62856-49b3-46e8-8b0c-49f219d1270b
+          command: ./gradlew clean build
         env:
           THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.me/v1
-          THUNDRA_AGENT_TEST_PROJECT_ID: f5a62856-49b3-46e8-8b0c-49f219d1270b
           THUNDRA_AGENT_BROKER_ENABLE: false
