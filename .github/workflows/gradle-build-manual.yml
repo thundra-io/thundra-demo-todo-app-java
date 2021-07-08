@@ -29,4 +29,4 @@ jobs:
           THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.me/v1
           THUNDRA_AGENT_BROKER_ENABLE: false
       - name: Run Gradle Tests
-        run: ./gradlew clean build --init-script ./thundra.gradle
+        run: ./gradlew clean build --init-script $THUNDRA_GRADLE_INIT_SCRIPT_PATH
