@@ -1,0 +1,32 @@
+name: Java CI with Manual Gradle for thundra-demo-todo-app-java
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: Thundra Gradle Test Instrumentation Action
+        uses: thundra-io/thundra-gradle-test-action@prep-for-release
+        with:
+          apikey: ${{ secrets.THUNDRA_DEMO_APIKEY }}
+          project_id: f5a62856-49b3-46e8-8b0c-49f219d1270b
+        env:
+          THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.me/v1
+          THUNDRA_AGENT_BROKER_ENABLE: false
+      - name: Run Gradle Tests
+        run: ./gradlew clean build --init-script ./thundra.gradle
