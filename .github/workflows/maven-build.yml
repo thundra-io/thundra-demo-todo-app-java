@@ -1,6 +1,10 @@
 name: Java CI with Maven for thundra-demo-todo-app-java
 
 on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
   workflow_dispatch:
 
 jobs:
