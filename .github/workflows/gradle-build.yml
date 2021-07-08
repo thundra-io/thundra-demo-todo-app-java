@@ -2,9 +2,9 @@ name: Java CI with Gradle for thundra-demo-todo-app-java
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
   workflow_dispatch:
 
 jobs:

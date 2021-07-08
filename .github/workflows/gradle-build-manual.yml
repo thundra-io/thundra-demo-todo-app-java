@@ -1,4 +1,4 @@
-name: Java CI with Maven for thundra-demo-todo-app-java
+name: Java CI with Manual Gradle for thundra-demo-todo-app-java
 
 on:
   push:
@@ -18,18 +18,15 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 8
-      - name: Cache Maven packages
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-      - name: Thundra Maven Test Instrumentation Action
-        uses: thundra-io/thundra-maven-test-action@prep-for-release
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: Thundra Gradle Test Instrumentation Action
+        uses: thundra-io/thundra-gradle-test-action@prep-for-release
         with:
           apikey: ${{ secrets.THUNDRA_DEMO_APIKEY }}
           project_id: f5a62856-49b3-46e8-8b0c-49f219d1270b
-          command: mvn -B clean install
+      - name: Run Gradle Tests Manually
+        run: ./gradlew clean build --init-script $THUNDRA_GRADLE_INIT_SCRIPT_PATH
         env:
           THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.me/v1
           THUNDRA_AGENT_BROKER_ENABLE: false
