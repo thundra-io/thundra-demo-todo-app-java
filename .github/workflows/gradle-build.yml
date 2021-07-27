@@ -1,4 +1,4 @@
-name: Java CI with Gradle for thundra-demo-todo-app-java
+name: Gradle Run for Lab Environment
 
 on:
   push:
