@@ -1,10 +1,6 @@
-name: Gradle Run for Lab Environment
+name: Gradle Run with Custom Command for Lab Environment
 
 on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
   workflow_dispatch:
 
 jobs:
@@ -24,7 +20,8 @@ jobs:
         with:
           apikey: ${{ secrets.THUNDRA_DEMO_ACCOUNT_APIKEY_LAB }}
           project_id: f5a62856-49b3-46e8-8b0c-49f219d1270b
-          command: ./gradlew clean build
+      - name: Run Gradle Tests Manually
+        run: ./gradlew clean build --init-script $THUNDRA_GRADLE_INIT_SCRIPT_PATH
         env:
           THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.me/v1
           THUNDRA_AGENT_BROKER_ENABLE: false
