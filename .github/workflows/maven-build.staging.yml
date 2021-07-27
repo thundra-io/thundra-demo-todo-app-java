@@ -1,17 +1,14 @@
-name: Java CI with Maven for thundra-demo-todo-app-java
+name: Maven Run for Staging Environment
 
 on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+  schedule:
+    - cron: "0 7,19 * * *"
   workflow_dispatch:
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 8
@@ -25,11 +22,11 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Thundra Maven Test Instrumentation Action
-        uses: thundra-io/thundra-maven-test-action@prep-for-release
+        uses: thundra-io/thundra-maven-test-action@v1
         with:
-          apikey: ${{ secrets.THUNDRA_DEMO_APIKEY }}
-          project_id: f5a62856-49b3-46e8-8b0c-49f219d1270b
+          apikey: ${{ secrets.THUNDRA_DEMO_ACCOUNT_APIKEY_STAGING }}
+          project_id: ed35d1dd-0cf2-4549-9e59-4e47bde53e72
           command: mvn -B clean install
         env:
-          THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.me/v1
+          THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.us/v1
           THUNDRA_AGENT_BROKER_ENABLE: false

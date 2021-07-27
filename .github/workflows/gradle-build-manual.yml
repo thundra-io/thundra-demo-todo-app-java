@@ -11,7 +11,6 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 8
@@ -21,9 +20,9 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
       - name: Thundra Gradle Test Instrumentation Action
-        uses: thundra-io/thundra-gradle-test-action@prep-for-release
+        uses: thundra-io/thundra-gradle-test-action@v1
         with:
-          apikey: ${{ secrets.THUNDRA_DEMO_APIKEY }}
+          apikey: ${{ secrets.THUNDRA_DEMO_ACCOUNT_APIKEY_LAB }}
           project_id: f5a62856-49b3-46e8-8b0c-49f219d1270b
       - name: Run Gradle Tests Manually
         run: ./gradlew clean build --init-script $THUNDRA_GRADLE_INIT_SCRIPT_PATH
