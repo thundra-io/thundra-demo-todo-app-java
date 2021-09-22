@@ -25,5 +25,5 @@ jobs:
         uses: thundra-io/thundra-maven-test-action@v1
         with:
           apikey: ${{ secrets.THUNDRA_DEMO_ACCOUNT_APIKEY_PROD }}
-          project_id: bcadb85e-508c-4187-9c63-a134fe8cf81d
+          project_id: ${{ secrets.THUNDRA_DEMO_TODO_APP_PROJECTID_PROD }}
           command: mvn -B clean install
