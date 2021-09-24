@@ -26,3 +26,8 @@ jobs:
       - name: Build with Maven 
         run: |
           mvn clean install
+      - name: Archive test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-result-report
+          path: target/surefire-reports/
