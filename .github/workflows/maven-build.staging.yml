@@ -30,3 +30,4 @@ jobs:
         env:
           THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.us/v1
           THUNDRA_AGENT_BROKER_ENABLE: false
+          THUNDRA_AGENT_REPORT_UPLOAD_REST_URL: https://upload.thundra.us
