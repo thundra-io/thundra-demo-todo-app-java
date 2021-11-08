@@ -15,7 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.junit.Assert;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,7 +48,7 @@ class TodoControllerTest {
     private TodoService service;
 
     @Test
-    @Ignore
+    @Disabled
     void testSkip() {
         Assert.assertEquals(1, 2);
     }
