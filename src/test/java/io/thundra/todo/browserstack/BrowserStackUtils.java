@@ -19,17 +19,22 @@ import org.apache.http.message.BasicNameValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
-
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
-
-import java.util.*;
 
 public class BrowserStackUtils {
     private static final BrowserStackUtils instance = new BrowserStackUtils();
-    public static BrowserStackUtils create(){
+
+    public static BrowserStackUtils create() {
         return instance;
     }
 
@@ -43,7 +48,7 @@ public class BrowserStackUtils {
         httpClient = HttpClientBuilder.create().build();
     }
 
-    public Map<String, Object> readConfigurationFromJSONFile(String filePath){
+    public Map<String, Object> readConfigurationFromJSONFile(String filePath) {
         File file = new File(filePath);
         try {
             return parser.readValue(file, Map.class);
@@ -53,8 +58,8 @@ public class BrowserStackUtils {
         }
     }
 
-    public <T> T convertObject(Object input, Class<T> type){
-        return parser.convertValue(input,type);
+    public <T> T convertObject(Object input, Class<T> type) {
+        return parser.convertValue(input, type);
     }
 
     private List<TodoEntity> getTodos(String url) throws URISyntaxException, IOException {
@@ -76,10 +81,10 @@ public class BrowserStackUtils {
         String listTodosUrl = url.concat("/todos");
         List<Long> idSet = new ArrayList<>();
         try {
-            for (TodoEntity todo : getTodos(listTodosUrl)){
+            for (TodoEntity todo : getTodos(listTodosUrl)) {
                 idSet.add(todo.getId());
             }
-        } catch ( IOException | URISyntaxException e) {
+        } catch (IOException | URISyntaxException e) {
             log.error("Failed to clear todos", e);
         }
 
@@ -93,6 +98,7 @@ public class BrowserStackUtils {
         });
 
     }
+
     public void sendCompleteRequest(String url, boolean isCompleted, String reason) {
         URI uri = null;
         try {
@@ -104,7 +110,7 @@ public class BrowserStackUtils {
         HttpPut putRequest = new HttpPut(uri);
 
         ArrayList<NameValuePair> requestEntity = new ArrayList<>();
-        requestEntity.add((new BasicNameValuePair("status", isCompleted ? "passed" :"failed")));
+        requestEntity.add((new BasicNameValuePair("status", isCompleted ? "passed" : "failed")));
         requestEntity.add((new BasicNameValuePair("reason", reason)));
 
         try {

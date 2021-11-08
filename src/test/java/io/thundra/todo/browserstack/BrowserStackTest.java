@@ -1,7 +1,10 @@
 package io.thundra.todo.browserstack;
 
-import org.junit.jupiter.api.*;
-
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -12,7 +15,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BrowserStackTest extends BrowserStackInitializer {
@@ -28,16 +32,16 @@ public class BrowserStackTest extends BrowserStackInitializer {
             input.sendKeys(Keys.ENTER);
         }
 
-        waitToRefresh();
+        waitToRefresh(   );
     }
 
     private List<WebElement> getTodoList(String content) {
         List<WebElement> elements = this.browserDriver.findElementsByTagName("li");
-        if(elements.size() < 4)
+        if (elements.size() < 4)
             return new ArrayList<>();
 
         return elements.stream().filter(x -> {
-            List<WebElement> test =  x.findElements(By.tagName("label"));
+            List<WebElement> test = x.findElements(By.tagName("label"));
             Optional<WebElement> label = test.stream().findFirst();
             return label.map(webElement -> webElement.getText().contains(content)).orElse(false);
         }).collect(Collectors.toList());
@@ -46,17 +50,16 @@ public class BrowserStackTest extends BrowserStackInitializer {
     @Test
     @DisplayName("Test Open Todo Page")
     @Order(1)
-    public void testOpenTodoPage(){
+    public void testOpenTodoPage() {
 
         this.browserDriver.get(testUrl);
         List<WebElement> elements = this.browserDriver.findElementsByTagName("h1");
 
         try {
             assertEquals("Thundra Java Todo Demo", this.browserDriver.getTitle());
-            assertEquals(elements.size(), elements.stream().filter( x -> x.getText().equals("todos")).count());
-        }
-        catch (AssertionError e) {
-            failTest("Test Todo Page could not be opened!: "+ e.getMessage());
+            assertEquals(elements.size(), elements.stream().filter(x -> x.getText().equals("todos")).count());
+        } catch (AssertionError e) {
+            failTest("Test Todo Page could not be opened!: " + e.getMessage());
         }
 
         passed();
@@ -75,7 +78,7 @@ public class BrowserStackTest extends BrowserStackInitializer {
         boolean hasAnyTodo = !this.browserDriver.findElementByClassName("todo-count")
                 .getText().equals("0 Tasks");
 
-        if (!hasAnyTodo || !hasTestTodo )
+        if (!hasAnyTodo || !hasTestTodo)
             failTest("Todo could not be added!");
 
         passed();
@@ -85,7 +88,7 @@ public class BrowserStackTest extends BrowserStackInitializer {
     @Test
     @DisplayName("Test Delete Todo")
     @Order(3)
-    public void testDeleteTodo(){
+    public void testDeleteTodo() {
         this.browserDriver.get(testUrl);
         this.addTodo("Test Todo");
 
@@ -105,7 +108,7 @@ public class BrowserStackTest extends BrowserStackInitializer {
 
         boolean isDeletedTestTodo = this.getTodoList("Test Todo").isEmpty();
 
-        if  (!isDeletedTestTodo)
+        if (!isDeletedTestTodo)
             failTest("Test Todo could not be deleted!");
 
         passed();
@@ -114,7 +117,7 @@ public class BrowserStackTest extends BrowserStackInitializer {
     @Test
     @DisplayName("Test Duplicate Todo")
     @Order(4)
-    public void testDuplicateTodo(){
+    public void testDuplicateTodo() {
         this.browserDriver.get(testUrl);
         this.addTodo("Test Todo");
 
@@ -135,7 +138,7 @@ public class BrowserStackTest extends BrowserStackInitializer {
         todoList = this.getTodoList("Test Todo");
         int currentSize = todoList.size();
 
-        if(previousSize >= currentSize)
+        if (previousSize >= currentSize)
             failTest("Test Todo could not be duplicated!");
 
         passed();
@@ -144,7 +147,7 @@ public class BrowserStackTest extends BrowserStackInitializer {
     @Test
     @DisplayName("Test Edit Todo")
     @Order(5)
-    public void testEditTodo(){
+    public void testEditTodo() {
 
         this.browserDriver.get(testUrl);
         this.addTodo("Test Todo");
@@ -180,7 +183,7 @@ public class BrowserStackTest extends BrowserStackInitializer {
     @Test
     @DisplayName("Test Mark Todo as Completed")
     @Order(6)
-    public void testMarkTodo(){
+    public void testMarkTodo() {
         this.browserDriver.get(testUrl);
         this.addTodo("Test Todo");
 
@@ -195,7 +198,7 @@ public class BrowserStackTest extends BrowserStackInitializer {
         todoList = this.getTodoList("Test Todo");
 
         for (WebElement completedTodo : todoList) {
-            if(!completedTodo.getAttribute("class").equals("completed"))
+            if (!completedTodo.getAttribute("class").equals("completed"))
                 failTest("Test Todo could not be marked as completed!");
         }
 
@@ -205,7 +208,7 @@ public class BrowserStackTest extends BrowserStackInitializer {
     @Test
     @DisplayName("Test Clear All Completed Todos")
     @Order(7)
-    public void testClearCompletedTodo(){
+    public void testClearCompletedTodo() {
         this.browserDriver.get(testUrl);
 
         this.addTodo("Test Todo 1");
@@ -215,7 +218,7 @@ public class BrowserStackTest extends BrowserStackInitializer {
 
         List<WebElement> testTodoList = this.getTodoList("Test Todo");
 
-        if(testTodoList.isEmpty())
+        if (testTodoList.isEmpty())
             failTest("Test Todos could not be added!");
 
         for (WebElement testElement : testTodoList) {

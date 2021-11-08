@@ -3,8 +3,11 @@ package io.thundra.todo.browserstack;
 import io.thundra.todo.ContextInitializedTest;
 import com.browserstack.local.Local;
 
-import org.junit.jupiter.api.*;
-
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -40,7 +43,7 @@ public class BrowserStackInitializer extends ContextInitializedTest {
 
         this.utils = BrowserStackUtils.create();
 
-        this.browserStackUrl = new URL(String.format("https://%s:%s@%s",userName, accessKey, server));
+        this.browserStackUrl = new URL(String.format("https://%s:%s@%s", userName, accessKey, server));
         this.testUrl = "http://bs-local.com:" + localPort;
 
         Map<String, Object> config = utils.readConfigurationFromJSONFile(configurationFilePath);
@@ -49,9 +52,9 @@ public class BrowserStackInitializer extends ContextInitializedTest {
         capabilitiesMap = utils.convertObject(capabilitiesSource, Map.class);
 
         Object localFlag = capabilitiesMap.get("browserstack.local");
-        boolean isLocal =  localFlag != null && utils.convertObject(localFlag, Boolean.class);
+        boolean isLocal = localFlag != null && utils.convertObject(localFlag, Boolean.class);
 
-        if(isLocal){
+        if (isLocal) {
 
             Map<String, String> localOptions = new HashMap<>();
             localOptions.put("key", accessKey);
@@ -70,20 +73,20 @@ public class BrowserStackInitializer extends ContextInitializedTest {
 
     @AfterEach
     private void tearDown() {
-        if(this.browserDriver != null)
+        if (this.browserDriver != null)
             this.browserDriver.quit();
     }
 
 
-    protected void markTestResult(boolean isCompleted, String reason){
+    protected void markTestResult(boolean isCompleted, String reason) {
         String url = String.format("https://%s:%s@api.browserstack.com/automate/sessions/%s.json",
-                userName, accessKey,this.browserDriver.getSessionId());
+                userName, accessKey, this.browserDriver.getSessionId());
 
         utils.sendCompleteRequest(url, isCompleted, reason);
     }
 
 
-    protected void passed(){
+    protected void passed() {
         this.utils.clearTodos(this.testUrl);
         waitToRefresh();
         markTestResult(true, "");
@@ -96,13 +99,12 @@ public class BrowserStackInitializer extends ContextInitializedTest {
     }
 
 
-    protected void waitToRefresh(){
+    protected void waitToRefresh() {
         try {
             Thread.sleep(1000);
-        } catch (InterruptedException ignored) {}
+        } catch (InterruptedException ignored) {
+        }
     }
-
-
 
 
 }
