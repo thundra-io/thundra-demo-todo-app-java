@@ -14,6 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.junit.Assert;
+import org.junit.Ignore;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,6 +47,17 @@ class TodoControllerTest {
     @MockBean
     private TodoService service;
 
+    @Test
+    @Ignore
+    void testSkip() {
+        Assert.assertEquals(1, 2);
+    }
+
+    @Test
+    void testAssertFail() {
+        Assert.assertEquals(1, 2);
+    }
+    
     @Test
     void testFindTodos() throws Exception {
         List<Todo> expected = Arrays.asList(new Todo(1L, "Test-1", true),
