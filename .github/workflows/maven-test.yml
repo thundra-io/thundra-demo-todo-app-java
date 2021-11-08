@@ -35,5 +35,5 @@ jobs:
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
-          name: test-result-artifact
+          name: test-result-junit
           path: target/surefire-reports/
