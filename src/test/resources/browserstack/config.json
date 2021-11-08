@@ -1,0 +1,11 @@
+{
+  "capabilities": {
+    "browserstack.local": true,
+    "os": "Windows",
+    "os_version": "10",
+    "browser": "Chrome",
+    "browser_version": "95",
+    "build": "thundra-demo-todo-app-java-browserstack",
+    "project": "Thundra Demo Todo App Java"
+  }
+}
