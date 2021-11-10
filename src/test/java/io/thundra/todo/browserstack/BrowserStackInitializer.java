@@ -36,6 +36,7 @@ public class BrowserStackInitializer extends ContextInitializedTest {
     protected RemoteWebDriver browserDriver;
     protected Local browserLocalAgent;
 
+
     protected String testUrl;
 
     @BeforeAll

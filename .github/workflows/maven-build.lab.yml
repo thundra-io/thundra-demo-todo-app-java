@@ -2,9 +2,9 @@ name: Maven Run for Lab Environment
 
 on:
   push:
-    branches: [master]
+    branches: [ master ]
   pull_request:
-    branches: [master]
+    branches: [ master ]
   schedule:
     - cron: "0 6,18 * * *"
   workflow_dispatch:
@@ -35,3 +35,5 @@ jobs:
           THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.me/v1
           THUNDRA_AGENT_BROKER_ENABLE: false
           THUNDRA_AGENT_REPORT_UPLOAD_REST_URL: https://upload.thundra.me
+          THUNDRA_BROWSERSTACK_USERNAME: ${{ secrets.THUNDRA_BROWSERSTACK_ACCESSKEY }}
+          THUNDRA_BROWSERSTACK_ACCESSKEY: ${{ secrets.THUNDRA_BROWSERSTACK_USERNAME }}
