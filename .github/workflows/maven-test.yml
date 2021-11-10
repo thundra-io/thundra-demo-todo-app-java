@@ -26,6 +26,9 @@ jobs:
       - name: Build with Maven 
         run: |
           mvn clean install
+        env:
+          THUNDRA_BROWSERSTACK_USERNAME: ${{ secrets.THUNDRA_BROWSERSTACK_USERNAME }}
+          THUNDRA_BROWSERSTACK_ACCESSKEY: ${{ secrets.THUNDRA_BROWSERSTACK_ACCESSKEY }}
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
