@@ -28,6 +28,6 @@ jobs:
           project_id: ${{ secrets.THUNDRA_DEMO_TODO_APP_PROJECTID_PROD }}
           command: mvn -B clean install
         env:
-          THUNDRA_BROWSERSTACK_ENABLED: true
+          THUNDRA_BROWSERSTACK_ENABLED: false
           THUNDRA_BROWSERSTACK_USERNAME: ${{ secrets.THUNDRA_BROWSERSTACK_USERNAME }}
           THUNDRA_BROWSERSTACK_ACCESSKEY: ${{ secrets.THUNDRA_BROWSERSTACK_ACCESSKEY }}
