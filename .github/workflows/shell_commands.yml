@@ -26,4 +26,6 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     - name: Run Gradle command
-      run: ls -la $GRADLE_HOME/init.d/
+      run: |
+        ls -la $GRADLE_HOME
+        ls -la $GRADLE_HOME/init.d/
