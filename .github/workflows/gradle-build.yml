@@ -27,6 +27,7 @@ jobs:
       run: ls -la $GRADLE_HOME/init.d/
     - name: Run Gradle command
       run: |
+        cat $THUNDRA_GRADLE_INIT_SCRIPT_PATH
         ls -la $GRADLE_HOME/init.d/
         ./gradlew build --init-script $THUNDRA_GRADLE_INIT_SCRIPT_PATH -d
       env:
