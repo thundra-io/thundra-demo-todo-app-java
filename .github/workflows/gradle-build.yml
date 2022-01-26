@@ -24,7 +24,8 @@ jobs:
         with:
           apikey: ${{ secrets.THUNDRA_APIKEY }}
           project_id: ${{ secrets.THUNDRA_PROJECTID }}
-          command: ./gradlew clean build
+      - name: Run Gradle command
+          run: ./gradlew build --init-script $THUNDRA_GRADLE_INIT_SCRIPT_PATH
         env:
           THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.me/v1
           THUNDRA_AGENT_BROKER_ENABLE: false
