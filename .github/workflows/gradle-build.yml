@@ -22,9 +22,11 @@ jobs:
       - name: Thundra Gradle Test Instrumentation Action
         uses: thundra-io/thundra-gradle-test-action@v1
         with:
-          apikey: ${{ secrets.THUNDRA_DEMO_ACCOUNT_APIKEY_LAB }}
-          project_id: f5a62856-49b3-46e8-8b0c-49f219d1270b
-          command: ./gradlew clean build
+          apikey: ${{ secrets.THUNDRA_APIKEY }}
+          project_id: ${{ secrets.THUNDRA_PROJECTID }}
+      - name: Run Gradle command
+          run: ./gradlew build --init-script $THUNDRA_GRADLE_INIT_SCRIPT_PATH
+
         env:
           THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.me/v1
           THUNDRA_AGENT_BROKER_ENABLE: false
