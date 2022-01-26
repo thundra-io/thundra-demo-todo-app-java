@@ -26,7 +26,9 @@ jobs:
     - name: Run LS command
       run: ls -la $GRADLE_HOME/init.d/
     - name: Run Gradle command
-      run: ./gradlew build -d
+      run: |
+        ls -la $GRADLE_HOME/init.d/
+        ./gradlew build --scan
       env:
         THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.me/v1
         THUNDRA_AGENT_BROKER_ENABLE: false
