@@ -24,7 +24,9 @@ jobs:
         apikey: ${{ secrets.THUNDRA_APIKEY }}
         project_id: ${{ secrets.THUNDRA_PROJECTID }}
     - name: Run LS command
-      run: ls -la $GRADLE_HOME/init.d/
+      run: |
+        cat $THUNDRA_GRADLE_INIT_SCRIPT_PATH
+        ls -la $GRADLE_HOME/init.d/
     - name: Run Gradle command
       run: |
         cat $THUNDRA_GRADLE_INIT_SCRIPT_PATH
