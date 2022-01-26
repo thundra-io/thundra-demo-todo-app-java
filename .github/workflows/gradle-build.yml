@@ -25,7 +25,7 @@ jobs:
         project_id: ${{ secrets.THUNDRA_PROJECTID }}
     - name: Run Gradle command
       run: ./gradlew build --init-script $THUNDRA_GRADLE_INIT_SCRIPT_PATH
-        env:
-          THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.me/v1
-          THUNDRA_AGENT_BROKER_ENABLE: false
-          THUNDRA_AGENT_REPORT_UPLOAD_REST_URL: https://upload.thundra.me
+      env:
+        THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.me/v1
+        THUNDRA_AGENT_BROKER_ENABLE: false
+        THUNDRA_AGENT_REPORT_UPLOAD_REST_URL: https://upload.thundra.me
