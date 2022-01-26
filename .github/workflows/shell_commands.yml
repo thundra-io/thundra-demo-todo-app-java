@@ -28,5 +28,4 @@ jobs:
     - name: Run Gradle command
       run: |
         echo $USER_HOME
-        echo $HOME
         ls -la $USER_HOME
