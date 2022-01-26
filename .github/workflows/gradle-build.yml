@@ -1,6 +1,10 @@
 name: Gradle Run for Lab Environment
 
 on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
   workflow_dispatch:
 
 jobs:
@@ -15,7 +19,7 @@ jobs:
         distribution: 'adopt'
         java-version: '8'
     - name: Thundra Gradle Test Instrumentation
-      uses: thundra-io/thundra-gradle-test-action@v1
+      uses: thundra-io/thundra-gradle-test-action@gradle-demo
       with:
         apikey: ${{ secrets.THUNDRA_APIKEY }}
         project_id: ${{ secrets.THUNDRA_PROJECTID }}
