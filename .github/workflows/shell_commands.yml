@@ -27,5 +27,5 @@ jobs:
         distribution: 'temurin'
     - name: Run Gradle command
       run: |
-        ls -la $USER_HOME/.gradle
-        ls -la $USER_HOME/.gradle/init.d/
+        echo $USER_HOME
+        echo $HOME
