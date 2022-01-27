@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: Init
+    name: Build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -28,11 +28,6 @@ jobs:
       run: |
         cat $THUNDRA_GRADLE_INIT_SCRIPT_PATH
         ls -la $GRADLE_HOME/init.d/
-
-  test:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
     - name: Run Gradle command
       run: |
         cat $THUNDRA_GRADLE_INIT_SCRIPT_PATH
