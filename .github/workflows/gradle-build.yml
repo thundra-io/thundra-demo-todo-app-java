@@ -32,7 +32,7 @@ jobs:
       run: |
         cat $THUNDRA_GRADLE_INIT_SCRIPT_PATH
         ls -la $GRADLE_HOME/init.d/
-        gradle build -d
+        gradle build -d --init-script $THUNDRA_GRADLE_INIT_SCRIPT_PATH
       env:
         THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.me/v1
         THUNDRA_AGENT_BROKER_ENABLE: false
