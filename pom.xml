@@ -18,6 +18,7 @@
         <testcontainers.version>1.15.3</testcontainers.version>
         <selenium.version>3.141.59</selenium.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <thundra.agent.version>2.7.9</thundra.agent.version>
     </properties>
     <dependencies>
         <dependency>
@@ -99,7 +100,12 @@
             <artifactId>browserstack-local-java</artifactId>
             <version>1.0.3</version>
         </dependency>
-
+        <dependency>
+            <groupId>io.thundra.agent</groupId>
+            <artifactId>thundra-agent-api-trace</artifactId>
+            <version>${thundra.agent.version}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
