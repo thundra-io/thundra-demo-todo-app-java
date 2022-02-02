@@ -1,5 +1,6 @@
 package io.thundra.todo.service;
 
+import io.thundra.agent.api.trace.annotations.Traced;
 import io.thundra.todo.entity.TodoEntity;
 import io.thundra.todo.model.Todo;
 import io.thundra.todo.repository.TodoRepository;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
  * @author tolgatakir
  */
 @Service
+@Traced(justMarker = true)
 public class TodoServiceImpl implements TodoService {
 
     private final TodoRepository repository;
@@ -38,6 +40,7 @@ public class TodoServiceImpl implements TodoService {
         return new Todo(entity.getId(), entity.getTitle(), entity.isCompleted());
     }
 
+    @Traced(traceLineByLine = true)
     @Override
     public Todo updateTodo(Long id, Todo request) {
         TodoEntity entity = getTodoEntity(id);
