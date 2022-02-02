@@ -18,16 +18,8 @@ jobs:
       - name: maven-settings-xml-action
         uses: whelk-io/maven-settings-xml-action@v14
         with:
-          repositories: '[
-            { "id": "thundra-releases", "url": "https://repo.thundra.io/content/repositories/thundra-releases"},
-            { "id": "thundra-infra-releases", "url": "https://repo.thundra.io/content/repositories/thundra-infra-releases"},
-            { "id": "thundra-infra-snapshots", "url": "https://repo.thundra.io/content/repositories/thundra-infra-snapshots"}
-            ]'
-          servers: '[
-            { "id": "thundra-releases", "username": "${{ secrets.THUNDRA_INTERNAL_REPO_USERNAME}}", "password": "${{ secrets.THUNDRA_INTERNAL_REPO_PASSWORD}}"},
-            { "id": "thundra-infra-releases", "username": "${{ secrets.THUNDRA_INTERNAL_REPO_USERNAME}}", "password": "${{ secrets.THUNDRA_INTERNAL_REPO_PASSWORD}}"},
-            { "id": "thundra-infra-snapshots", "username": "${{ secrets.THUNDRA_INTERNAL_REPO_USERNAME}}", "password": "${{ secrets.THUNDRA_INTERNAL_REPO_PASSWORD}}"}
-            ]'
+          repositories: '[ { "id": "thundra-releases", "url": "https://repo.thundra.io/content/repositories/thundra-releases"} ]'
+          servers: '[ { "id": "thundra-releases", "username": "${{ secrets.THUNDRA_INTERNAL_REPO_USERNAME}}", "password": "${{ secrets.THUNDRA_INTERNAL_REPO_PASSWORD}}"} ]'
       - name: Cache Maven packages
         uses: actions/cache@v2
         with:
