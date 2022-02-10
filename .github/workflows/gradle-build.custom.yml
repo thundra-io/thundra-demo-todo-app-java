@@ -3,7 +3,6 @@ name: Gradle Run with Custom Command for Lab Environment
 on:
   workflow_dispatch:
 
-
 jobs:
   build:
     name: Build
