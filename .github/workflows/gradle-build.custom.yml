@@ -23,6 +23,6 @@ jobs:
       - name: Run Gradle Tests Manually
         run: ./gradlew clean build --init-script $THUNDRA_GRADLE_INIT_SCRIPT_PATH
         env:
-          THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.me/v1
+          THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.us/v1
           THUNDRA_AGENT_BROKER_ENABLE: false
-          THUNDRA_AGENT_REPORT_UPLOAD_REST_URL: https://upload.thundra.me
+          THUNDRA_AGENT_REPORT_UPLOAD_REST_URL: https://upload.thundra.us
