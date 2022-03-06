@@ -24,8 +24,8 @@ jobs:
       - name: Thundra Maven Test Instrumentation Action
         uses: thundra-io/thundra-maven-test-action@v1
         with:
-          apikey: ${{ secrets.THUNDRA_DEMO_ACCOUNT_APIKEY_STAGING }}
-          project_id: ed35d1dd-0cf2-4549-9e59-4e47bde53e72
+          apikey: ${{ secrets.THUNDRA_APIKEY }}
+          project_id: ${{ secrets.THUNDRA_PROJECTID }}
           command: mvn -B clean install
         env:
           THUNDRA_AGENT_REPORT_REST_BASEURL: https://collector.thundra.us/v1
