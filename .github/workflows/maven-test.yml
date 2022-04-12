@@ -22,6 +22,7 @@ jobs:
       - name: Build with Maven 
         run: |
           mvn clean install
+          mvn jacoco:report
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -34,3 +35,10 @@ jobs:
         with:
           name: test-result-junit
           path: target/surefire-reports/
+
+      - name: Archive coverage results
+        if: success() || failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-artifact
+          path: target/site/
