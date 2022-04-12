@@ -22,6 +22,8 @@ jobs:
       - name: Build with Maven 
         run: |
           mvn clean install
+      - name: Jacoco Xml Report Maven
+        run:
           mvn jacoco:report
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
