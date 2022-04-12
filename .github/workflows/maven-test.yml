@@ -23,6 +23,7 @@ jobs:
         run: |
           mvn clean install
       - name: Jacoco Xml Report Maven
+        if: success() || failure()
         run:
           mvn jacoco:report
       - name: Archive production artifacts
