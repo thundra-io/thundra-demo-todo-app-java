@@ -68,7 +68,8 @@ public class TodoServiceImpl implements TodoService {
         repository.deleteAllInBatch(completedTodos);
     }
 
-    /*public int sum() {
+    /*
+    public int sum() {
         int x = 5;
         int y = 4;
         int sum = x + y;
