@@ -30,6 +30,7 @@ public class TodoController {
     @GetMapping
     public ResponseEntity<List<Todo>> findTodos() {
         List<Todo> todos = service.findTodos();
+        System.out.println("todo");
         return ResponseEntity.ok(todos);
     }
 
