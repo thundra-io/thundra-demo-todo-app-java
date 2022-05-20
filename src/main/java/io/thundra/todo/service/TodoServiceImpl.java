@@ -61,6 +61,14 @@ public class TodoServiceImpl implements TodoService {
         entity = repository.save(entity);
         return new Todo(entity.getId(), entity.getTitle(), entity.isCompleted());
     }
+    
+    public int multiply() {
+        int x = 3;
+        int y = 4;
+        int mm = x * y;
+        return mm;
+    }
+    
 
     @Override
     public void clearCompletedTodo() {
