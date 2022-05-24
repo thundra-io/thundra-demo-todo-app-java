@@ -60,10 +60,16 @@ public class TodoServiceImpl implements TodoService {
         entity.setCompleted(duplicatedEntity.isCompleted());
         entity = repository.save(entity);
         System.out.println("demo");
+        System.out.println("demo2");
         return new Todo(entity.getId(), entity.getTitle(), entity.isCompleted());
     }
     
-
+    public int multiply() {
+        int x = 3;
+        int y = 4;
+        int mm = x * y;
+        return mm;
+    }
     
 
     @Override
@@ -73,7 +79,12 @@ public class TodoServiceImpl implements TodoService {
     }
 
 
-
+    public int sum() {
+        int x = 5;
+        int y = 4;
+        int sum = x + y;
+        return sum;
+    }
 
     private TodoEntity getTodoEntity(Long id) {
         return repository.findById(id).orElseThrow(() ->
