@@ -29,6 +29,13 @@ public class TodoServiceImpl implements TodoService {
                 .collect(Collectors.toList());
     }
 
+    public int sum() {
+        int x = 5;
+        int y = 4;
+        int sum = x + y;
+        return sum;
+    }
+
     @Override
     public Todo addTodo(Todo request) {
         TodoEntity entity = new TodoEntity();
@@ -57,10 +64,16 @@ public class TodoServiceImpl implements TodoService {
         TodoEntity duplicatedEntity = getTodoEntity(id);
         TodoEntity entity = new TodoEntity();
         entity.setTitle(duplicatedEntity.getTitle());
-        System.out.println("test");
         entity.setCompleted(duplicatedEntity.isCompleted());
         entity = repository.save(entity);
         return new Todo(entity.getId(), entity.getTitle(), entity.isCompleted());
+    }
+
+    public int multiply() {
+        int x = 3;
+        int y = 4;
+        int mm = x * y;
+        return mm;
     }
 
     @Override
