@@ -39,7 +39,7 @@ public class TodoController {
         return ResponseEntity.ok(todo);
     }
 
-    @PostMapping
+    @PostMapping("dummy")
     public ResponseEntity<Todo> dumyEndpoint(@Valid @RequestBody Todo request) {
         return ResponseEntity.ok(null);
     }
