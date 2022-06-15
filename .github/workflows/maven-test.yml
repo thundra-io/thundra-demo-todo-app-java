@@ -45,4 +45,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: coverage-artifact
-          path: target/site/jacoco/
+          path: |
+            target/site/jacoco/*.xml
+            target/site/cobertura/*.xml

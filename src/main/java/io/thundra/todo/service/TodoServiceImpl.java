@@ -15,6 +15,9 @@ import java.util.stream.Collectors;
 @Service
 public class TodoServiceImpl implements TodoService {
 
+    public static final int X = 5;
+    public static final int Y = 4;
+    public static final int X1 = 3;
     private final TodoRepository repository;
 
     public TodoServiceImpl(TodoRepository repository) {
@@ -30,8 +33,8 @@ public class TodoServiceImpl implements TodoService {
     }
 
     public int sum() {
-        int x = 5;
-        int y = 4;
+        int x = X;
+        int y = Y;
         int sum = x + y;
         return sum;
     }
@@ -70,8 +73,8 @@ public class TodoServiceImpl implements TodoService {
     }
 
     public int multiply() {
-        int x = 3;
-        int y = 4;
+        int x = X1;
+        int y = Y;
         int mm = x * y;
         return mm;
     }
