@@ -15,6 +15,9 @@ import java.util.stream.Collectors;
 @Service
 public class TodoServiceImpl implements TodoService {
 
+    public static final int X = 5;
+    public static final int Y = 4;
+    public static final int X1 = 3;
     private final TodoRepository repository;
 
     public TodoServiceImpl(TodoRepository repository) {
@@ -27,6 +30,13 @@ public class TodoServiceImpl implements TodoService {
         return entities.stream()
                 .map(entity -> new Todo(entity.getId(), entity.getTitle(), entity.isCompleted()))
                 .collect(Collectors.toList());
+    }
+
+    public int sum() {
+        int x = X;
+        int y = Y;
+        int sum = x + y;
+        return sum;
     }
 
     @Override
@@ -60,6 +70,13 @@ public class TodoServiceImpl implements TodoService {
         entity.setCompleted(duplicatedEntity.isCompleted());
         entity = repository.save(entity);
         return new Todo(entity.getId(), entity.getTitle(), entity.isCompleted());
+    }
+
+    public int multiply() {
+        int x = X1;
+        int y = Y;
+        int mm = x * y;
+        return mm;
     }
 
     @Override

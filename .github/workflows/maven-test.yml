@@ -25,14 +25,19 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build with Maven
         run: |
-          mvn clean install
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: target-artifact
-          path: target
+          mvn clean install -Dtest=TodoServiceSumTest
+          mvn clean install -Dtest=TodoServiceTest -PotherOutputDir
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
           name: test-result-junit
           path: target/surefire-reports/
+      - name: Archive coverage results
+        if: success() || failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-artifact
+          path: |
+            target/site/jacoco/*.xml
+            coverage_demo/site/jacoco/*.xml
+            target/site/cobertura/*.xml
