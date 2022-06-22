@@ -38,6 +38,6 @@ jobs:
         with:
           name: coverage-artifact
           path: |
-            coverage_demo
-            target/site
-
+            target/site/jacoco/*.xml
+            coverage_demo/site/jacoco/*.xml
+            target/site/cobertura/*.xml
