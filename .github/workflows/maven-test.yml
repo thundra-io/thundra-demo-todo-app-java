@@ -27,15 +27,6 @@ jobs:
         run: |
           mvn clean install -Dtest=TodoServiceSumTest
           mvn clean install -Dtest=TodoServiceTest -PotherOutputDir
-      - name: Jacoco Xml Report Maven
-        if: success() || failure()
-        run:
-          mvn jacoco:report
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: target-artifact
-          path: target
       - name: Archive test results
         uses: actions/upload-artifact@v2
         with:
@@ -47,6 +38,6 @@ jobs:
         with:
           name: coverage-artifact
           path: |
-            target/site/jacoco/*.xml
-            coverage_demo/site/jacoco/*.xml
-            target/site/cobertura/*.xml
+            coverage_demo
+            target/site
+
