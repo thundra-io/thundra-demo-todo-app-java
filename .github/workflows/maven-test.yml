@@ -25,7 +25,8 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build with Maven
         run: |
-          mvn clean install
+          mvn clean install -Dtest=TodoServiceSumTest
+          mvn clean install -Dtest=TodoServiceTest -PotherOutputDir
       - name: Jacoco Xml Report Maven
         if: success() || failure()
         run:
@@ -47,4 +48,5 @@ jobs:
           name: coverage-artifact
           path: |
             target/site/jacoco/*.xml
+            coverage_demo/site/jacoco/*.xml
             target/site/cobertura/*.xml
