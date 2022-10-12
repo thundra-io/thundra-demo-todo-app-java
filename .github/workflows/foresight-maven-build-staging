@@ -1,4 +1,4 @@
-name: foresight-maven-build-lab
+name: foresight-maven-build-staging
 
 on:
   push:
